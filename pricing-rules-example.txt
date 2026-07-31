@@ -1,0 +1,21 @@
+# Example pricing sheet for the supermarket checkout CLI.
+# Pass this file with `--prices` to load it instead of the built-in defaults, e.g.:
+#   java -jar target/checkout-kata.jar --prices pricing-rules-example.txt
+#
+# Grammar (one directive per line; blank lines and #-comments are ignored):
+#   UNIT <sku> <priceInPence>
+#   MULTI_BUY <sku> <quantity> <priceInPence>      "N for £Y"
+#   BUY_GET_FREE <sku> <payQuantity> <freeQuantity> "buy N get M free"
+#   COMBO <priceInPence> <sku:qty> [<sku:qty> ...]  "meal deal"
+#
+# A special rule for a SKU must appear after that SKU's UNIT line.
+
+UNIT A 50
+UNIT B 75
+UNIT C 25
+UNIT D 150
+UNIT E 200
+
+MULTI_BUY B 2 125
+BUY_GET_FREE C 3 1
+COMBO 300 D:1 E:1
