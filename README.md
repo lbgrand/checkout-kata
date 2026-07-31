@@ -109,6 +109,9 @@ price. This means:
   any quantities per combo, not just "one of each of two items".
 - Leftover items that don't complete a group (e.g. 5 Cs under "buy 3 get 1 free") fall through to
   unit pricing automatically, without special-casing in each rule.
+- Only one special rule can be applied to a single item in the busket. This is by design, since 
+  combining multiple special rules could lead to unexpectedly generous promotions in right combinations.
+  Therefore, most companies would avoid multiple promos per item.
 
 **Pluggable, per-transaction pricing.** `PricingRules` is immutable and built via a fluent
 `Builder` (`PricingRules.builder().unitPrice("A", 50).multiBuy(...)...build()`), or parsed from a
@@ -122,16 +125,3 @@ pounds, avoiding rounding errors; the CLI formats pence as `£x.xx` only at the 
 **Basket order doesn't matter.** `Checkout` tallies quantities per SKU as items are scanned, so
 promotions are applied the same way regardless of scan order (e.g. scanning `B, A, B` gives the
 same total as `A, B, B`).
-
-## Testing
-
-Unit tests cover:
-
-- Each rule type in isolation (`MultiBuyRuleTest`, `BuyNGetMFreeRuleTest`, `ComboRuleTest`),
-  including edge cases like partial groups and combos limited by the scarcer ingredient.
-- `PricingRules.Builder` validation (unknown SKUs, duplicate unit prices, independent snapshots).
-- `Checkout` against the worked examples from the spec, plus a parameterized table of basket ->
-  total-price cases.
-- `PricingRulesFileParser` for the custom-pricing-sheet file format, including malformed input.
-- `CheckoutCli`, exercised end-to-end via injected `InputStream`/`PrintStream` (no process
-  spawning needed) for both interactive and one-shot modes.
