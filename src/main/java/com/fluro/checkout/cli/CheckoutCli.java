@@ -120,6 +120,6 @@ public final class CheckoutCli {
     }
 
     private static String formatPrice(long priceInPence) {
-        return String.format(Locale.ROOT, "£%d.%02d", priceInPence / 100, Math.abs(priceInPence % 100));
+        return String.format(Locale.ROOT, "£%d.%02d", priceInPence / 100, priceInPence % 100);
     }
 }

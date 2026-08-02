@@ -11,7 +11,7 @@ import java.util.Map;
  * they report back what they consumed via {@link RuleApplication}, and the caller (see
  * {@link Checkout}) is responsible for deducting it before running the next rule.
  */
-public interface PricingRule {
+public interface PromotionRule {
 
     /**
      * @param availableQuantities quantities of each SKU still available to be priced, keyed by SKU

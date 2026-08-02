@@ -1,6 +1,6 @@
 package com.fluro.checkout.rules;
 
-import com.fluro.checkout.PricingRule;
+import com.fluro.checkout.PromotionRule;
 import com.fluro.checkout.RuleApplication;
 
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import java.util.Map;
  * the available stock allows; any items left over (because there weren't enough of one of the
  * SKUs to form another combo) fall through to plain unit pricing.
  */
-public final class ComboRule implements PricingRule {
+public final class ComboRule implements PromotionRule {
 
     private final Map<String, Integer> componentsPerCombo;
     private final long priceInPence;

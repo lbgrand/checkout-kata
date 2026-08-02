@@ -3,7 +3,7 @@ package com.fluro.checkout;
 import java.util.Map;
 
 /**
- * The outcome of applying a {@link PricingRule} to a basket: how much it charged, and how many
+ * The outcome of applying a {@link PromotionRule} to a basket: how much it charged, and how many
  * units of each SKU it "used up" while doing so. Consumed units are removed from the pool before
  * remaining rules (and finally plain unit pricing) run, so the same units are never charged twice.
  */

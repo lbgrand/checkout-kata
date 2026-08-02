@@ -11,18 +11,18 @@ import java.util.Map;
 
 /**
  * A complete, immutable set of pricing rules for a checkout transaction: the plain unit price of
- * every known SKU, plus zero or more {@link PricingRule} promotions that can override part of
+ * every known SKU, plus zero or more {@link PromotionRule} promotions that can override part of
  * that price. Because pricing changes frequently, a new {@code PricingRules} instance can be
- * built and handed to a {@link Checkout} at any time, e.g. once per transaction.
+ * built and handed to a {@link Checkout} at the start of a new checkout transaction.
  */
 public final class PricingRules {
 
     private final Map<String, Long> unitPricesInPence;
-    private final List<PricingRule> specialRules;
+    private final List<PromotionRule> promotionRules;
 
-    private PricingRules(Map<String, Long> unitPricesInPence, List<PricingRule> specialRules) {
+    private PricingRules(Map<String, Long> unitPricesInPence, List<PromotionRule> promotionRules) {
         this.unitPricesInPence = Map.copyOf(unitPricesInPence);
-        this.specialRules = List.copyOf(specialRules);
+        this.promotionRules = List.copyOf(promotionRules);
     }
 
     public boolean hasUnitPrice(String sku) {
@@ -37,8 +37,8 @@ public final class PricingRules {
         return price;
     }
 
-    public List<PricingRule> specialRules() {
-        return specialRules;
+    public List<PromotionRule> promotionRules() {
+        return promotionRules;
     }
 
     public static Builder builder() {
@@ -49,17 +49,21 @@ public final class PricingRules {
     public static final class Builder {
 
         private final Map<String, Long> unitPrices = new LinkedHashMap<>();
-        private final List<PricingRule> rules = new ArrayList<>();
+        private final List<PromotionRule> rules = new ArrayList<>();
 
         private Builder() {
         }
 
-        /** Registers the plain unit price (in pence) for a SKU. Must be called before any special rule referencing that SKU. */
+        /** Registers the plain unit price (in pence) for a SKU. Must be called before any promotion rule referencing that SKU. */
         public Builder unitPrice(String sku, long priceInPence) {
             String normalized = normalizeSku(sku);
             if (unitPrices.containsKey(normalized)) {
                 throw new IllegalArgumentException("Unit price for SKU '" + normalized + "' already defined");
             }
+            if (priceInPence <= 0) {
+                throw new IllegalArgumentException("Price for SKU '" + normalized + "' must be greater than zero");
+            }
+
             unitPrices.put(normalized, priceInPence);
             return this;
         }
@@ -86,8 +90,8 @@ public final class PricingRules {
             return this;
         }
 
-        /** Registers an arbitrary custom {@link PricingRule}, for promotion types beyond the built-in ones. */
-        public Builder rule(PricingRule rule) {
+        /** Registers an arbitrary custom {@link PromotionRule}, for promotion types beyond the built-in ones. */
+        public Builder rule(PromotionRule rule) {
             rules.add(rule);
             return this;
         }

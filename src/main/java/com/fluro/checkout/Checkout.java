@@ -43,7 +43,7 @@ public final class Checkout {
         Map<String, Integer> remaining = new LinkedHashMap<>(scannedQuantities);
         long total = 0L;
 
-        for (PricingRule rule : pricingRules.specialRules()) {
+        for (PromotionRule rule : pricingRules.promotionRules()) {
             RuleApplication result = rule.apply(remaining);
             total += result.priceInPence();
             result.consumedQuantities().forEach((sku, consumed) -> remaining.merge(sku, -consumed, Integer::sum));
