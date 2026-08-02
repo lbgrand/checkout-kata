@@ -23,7 +23,7 @@ public final class MultiBuyRule implements PromotionRule {
         if (quantity < 2) {
             throw new IllegalArgumentException("quantity must be at least 2, got " + quantity);
         }
-        if (priceInPence < 0) {
+        if (priceInPence <= 0) {
             throw new IllegalArgumentException("priceInPence must be greater than zero");
         }
         this.sku = sku;

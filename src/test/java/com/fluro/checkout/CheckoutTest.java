@@ -1,5 +1,6 @@
 package com.fluro.checkout;
 
+import org.assertj.core.api.AbstractThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -78,16 +79,9 @@ class CheckoutTest {
 
     @Test
     void rejectsUnknownSku() {
-        assertThatThrownBy(() -> checkout.scan("Z")).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void exposesScannedQuantities() {
-        checkout.scan("A");
-        checkout.scan("A");
-        checkout.scan("B");
-
-        assertThat(checkout.scannedQuantities()).containsEntry("A", 2).containsEntry("B", 1);
+        AbstractThrowableAssert<?, ? extends Throwable> exception = assertThatThrownBy(() -> checkout.scan("Z"));
+        exception.isInstanceOf(IllegalArgumentException.class);
+        exception.hasMessage("Unknown SKU: 'Z'");
     }
 
     @Test

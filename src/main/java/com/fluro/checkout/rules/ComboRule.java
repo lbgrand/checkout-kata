@@ -30,8 +30,8 @@ public final class ComboRule implements PromotionRule {
                 throw new IllegalArgumentException("quantity for " + sku + " must be at least 1");
             }
         });
-        if (priceInPence < 0) {
-            throw new IllegalArgumentException("priceInPence must not be negative");
+        if (priceInPence <= 0) {
+            throw new IllegalArgumentException("priceInPence must be positive");
         }
         this.componentsPerCombo = Map.copyOf(componentsPerCombo);
         this.priceInPence = priceInPence;

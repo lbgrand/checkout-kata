@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BuyNGetMFreeRuleTest {
 
@@ -41,5 +42,40 @@ class BuyNGetMFreeRuleTest {
 
         assertThat(result.priceInPence()).isEqualTo(150); // 2 groups * 3 * 25p
         assertThat(result.consumedQuantities()).isEqualTo(Map.of("C", 8));
+    }
+
+    @Test
+    void rejectsNullSku() {
+        assertThatThrownBy(() -> new BuyNGetMFreeRule(null, 3, 1, 25))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("sku must not be blank");
+    }
+
+    @Test
+    void rejectsBlankSku() {
+        assertThatThrownBy(() -> new BuyNGetMFreeRule("  ", 3, 1, 25))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("sku must not be blank");
+    }
+
+    @Test
+    void rejectsPayQuantityBelowOne() {
+        assertThatThrownBy(() -> new BuyNGetMFreeRule("C", 0, 1, 25))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("paidQuantity must be at least 1, got 0");
+    }
+
+    @Test
+    void rejectsFreeQuantityBelowOne() {
+        assertThatThrownBy(() -> new BuyNGetMFreeRule("C", 3, 0, 25))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("freeQuantity must be at least 1, got 0");
+    }
+
+    @Test
+    void rejectsNonPositiveUnitPrice() {
+        assertThatThrownBy(() -> new BuyNGetMFreeRule("C", 3, 1, 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("unitPriceInPence must be greater than zero");
     }
 }

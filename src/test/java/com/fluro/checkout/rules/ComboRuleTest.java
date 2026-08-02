@@ -3,10 +3,11 @@ package com.fluro.checkout.rules;
 import com.fluro.checkout.RuleApplication;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ComboRuleTest {
 
@@ -49,6 +50,58 @@ class ComboRuleTest {
 
     @Test
     void rejectsSingleSkuCombo() {
-        assertThrows(IllegalArgumentException.class, () -> new ComboRule(Map.of("D", 1), 300));
+        assertThatThrownBy(() -> new ComboRule(Map.of("D", 1), 300))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("a combo must contain at least 2 distinct SKUs");
+    }
+
+    @Test
+    void rejectsNullComponents() {
+        assertThatThrownBy(() -> new ComboRule(null, 300))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("a combo must contain at least 2 distinct SKUs");
+    }
+
+    @Test
+    void rejectsEmptyComponents() {
+        assertThatThrownBy(() -> new ComboRule(Map.of(), 300))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("a combo must contain at least 2 distinct SKUs");
+    }
+
+    @Test
+    void rejectsBlankSkuInComponents() {
+        Map<String, Integer> components = new HashMap<>();
+        components.put("D", 1);
+        components.put(" ", 1);
+
+        assertThatThrownBy(() -> new ComboRule(components, 300))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("sku must not be blank");
+    }
+
+    @Test
+    void rejectsNullQuantityInComponents() {
+        Map<String, Integer> components = new HashMap<>();
+        components.put("D", 1);
+        components.put("E", null);
+
+        assertThatThrownBy(() -> new ComboRule(components, 300))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("quantity for E must be at least 1");
+    }
+
+    @Test
+    void rejectsNonPositiveQuantityInComponents() {
+        assertThatThrownBy(() -> new ComboRule(Map.of("D", 1, "E", 0), 300))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("quantity for E must be at least 1");
+    }
+
+    @Test
+    void rejectsNonPositivePrice() {
+        assertThatThrownBy(() -> new ComboRule(Map.of("D", 1, "E", 1), 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("priceInPence must be positive");
     }
 }

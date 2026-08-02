@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MultiBuyRuleTest {
 
@@ -44,6 +44,29 @@ class MultiBuyRuleTest {
 
     @Test
     void rejectsGroupSizeSmallerThanTwo() {
-        assertThrows(IllegalArgumentException.class, () -> new MultiBuyRule("A", 1, 50));
+        assertThatThrownBy(() -> new MultiBuyRule("A", 1, 50))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("quantity must be at least 2, got 1");
+    }
+
+    @Test
+    void rejectsNullSku() {
+        assertThatThrownBy(() -> new MultiBuyRule(null, 2, 125))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("sku must not be blank");
+    }
+
+    @Test
+    void rejectsBlankSku() {
+        assertThatThrownBy(() -> new MultiBuyRule("  ", 2, 125))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("sku must not be blank");
+    }
+
+    @Test
+    void rejectsNonPositivePrice() {
+        assertThatThrownBy(() -> new MultiBuyRule("B", 2, 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("priceInPence must be greater than zero");
     }
 }

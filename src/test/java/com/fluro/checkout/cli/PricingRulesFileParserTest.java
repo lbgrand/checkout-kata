@@ -57,19 +57,20 @@ class PricingRulesFileParserTest {
     void rejectsUnknownDirective() {
         assertThatThrownBy(() -> PricingRulesFileParser.parse(new StringReader("FOO A 1")))
                 .isInstanceOf(PricingRulesParseException.class)
-                .hasMessageContaining("Line 1");
+                .hasMessageContaining("Line 1: Unknown directive 'FOO'");
     }
 
     @Test
     void rejectsMalformedNumber() {
         assertThatThrownBy(() -> PricingRulesFileParser.parse(new StringReader("UNIT A fifty")))
                 .isInstanceOf(PricingRulesParseException.class)
-                .hasMessageContaining("Line 1");
+                .hasMessageContaining("Line 1: Malformed line: 'UNIT A fifty'");
     }
 
     @Test
     void rejectsSpecialRuleBeforeUnitPrice() {
         assertThatThrownBy(() -> PricingRulesFileParser.parse(new StringReader("MULTI_BUY B 2 125")))
-                .isInstanceOf(PricingRulesParseException.class);
+                .isInstanceOf(PricingRulesParseException.class)
+                .hasMessageContaining("Line 1: Malformed line: 'MULTI_BUY B 2 125'");
     }
 }

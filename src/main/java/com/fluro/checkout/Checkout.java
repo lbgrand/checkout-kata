@@ -58,8 +58,4 @@ public final class Checkout {
         return total;
     }
 
-    /** Read-only snapshot of how many of each SKU have been scanned so far. */
-    public Map<String, Integer> scannedQuantities() {
-        return Map.copyOf(scannedQuantities);
-    }
 }

@@ -23,7 +23,7 @@ public final class BuyNGetMFreeRule implements PromotionRule {
             throw new IllegalArgumentException("sku must not be blank");
         }
         if (paidQuantity < 1) {
-            throw new IllegalArgumentException("payQuantity must be at least 1, got " + paidQuantity);
+            throw new IllegalArgumentException("paidQuantity must be at least 1, got " + paidQuantity);
         }
         if (freeQuantity < 1) {
             throw new IllegalArgumentException("freeQuantity must be at least 1, got " + freeQuantity);
