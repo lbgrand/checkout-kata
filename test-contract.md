@@ -1,28 +1,28 @@
 # MOTOR VEHICLE BILL OF SALE / PURCHASE AGREEMENT
 
-This Motor Vehicle Bill of Sale ("Agreement") is entered into on **[Date]** by and between:
+This Motor Vehicle Bill of Sale ("Agreement") is entered into on **November 26, 2026** by and between:
 
-* **Seller:** [Full Legal Name], residing at [Street Address, City, Postal Code, Country] ("Seller")
-* **Buyer:** [Full Legal Name], residing at [Street Address, City, Postal Code, Country] ("Buyer")
+* **Seller:** Marcus Vance, residing at 42 Olive Grove Avenue, Paphos, 8010, Cyprus ("Seller")
+* **Buyer:** Elena Rostova, residing at 18 Coral Bay Road, Peyia, 8560, Cyprus ("Buyer")
 
 ---
 
 ## 1. Vehicle Details
 The Seller agrees to sell, and the Buyer agrees to purchase, the following motor vehicle ("Vehicle"):
 
-* **Make:** [e.g., Toyota]
-* **Model:** [e.g., Yaris]
-* **Year:** [YYYY]
-* **Color:** [Color]
-* **Vehicle Identification Number (VIN / Chassis No.):** [17-Character VIN]
-* **Registration / License Plate Number:** [Plate Number]
-* **Current Odometer Reading:** [Mileage] [km / miles]
+* **Make:** Toyota
+* **Model:** Yaris
+* **Year:** 2019
+* **Color:** Obsidian Black
+* **Vehicle Identification Number (VIN / Chassis No.):** JTDKGNEC50N482910
+* **Registration / License Plate Number:** KLM 492
+* **Current Odometer Reading:** 68,450 km
 
 ---
 
 ## 2. Purchase Price & Payment
-* **Total Purchase Price:** **[Currency & Amount, e.g., €8,500.00]**
-* **Payment Method:** [e.g., Bank Transfer / Cash / Certified Check]
+* **Total Purchase Price:** **€9,200.00**
+* **Payment Method:** Instant SEPA Bank Transfer
 * **Payment Terms:** Payment is due in full upon signing this Agreement and prior to the physical handover of the Vehicle and title documents.
 
 The Seller hereby acknowledges receipt of the full purchase price from the Buyer.
@@ -50,7 +50,7 @@ The Buyer acknowledges that they have inspected the Vehicle (or waived the right
 ---
 
 ## 6. Governing Law
-This Agreement shall be governed by and construed in accordance with the laws of **[Country / Jurisdiction]**.
+This Agreement shall be governed by and construed in accordance with the laws of **the Republic of Cyprus**.
 
 ---
 
@@ -58,11 +58,11 @@ This Agreement shall be governed by and construed in accordance with the laws of
 In witness whereof, the parties have executed this Agreement on the date first written above.
 
 **Seller Signature:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
-**Printed Name:** [Seller Full Name]  
-**ID / Passport No.:** [ID Number]  
-**Date:** [Date]  
+**Printed Name:** Marcus Vance  
+**ID / Passport No.:** C94827104  
+**Date:** November 26, 2026  
 
 **Buyer Signature:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
-**Printed Name:** [Buyer Full Name]  
-**ID / Passport No.:** [ID Number]  
-**Date:** [Date]
+**Printed Name:** Elena Rostova  
+**ID / Passport No.:** 751903482  
+**Date:** November 26, 2026
