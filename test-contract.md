@@ -1,6 +1,6 @@
 # MOTOR VEHICLE BILL OF SALE / PURCHASE AGREEMENT
 
-This Motor Vehicle Bill of Sale ("Agreement") is entered into on **November 26, 2026** by and between:
+This Motor Vehicle Bill of Sale ("Agreement") is entered into on **November 27, 2026** by and between:
 
 * **Seller:** Marcus Vance, residing at 42 Olive Grove Avenue, Paphos, 8010, Cyprus ("Seller")
 * **Buyer:** Elena Rostova, residing at 18 Coral Bay Road, Peyia, 8560, Cyprus ("Buyer")
@@ -16,12 +16,12 @@ The Seller agrees to sell, and the Buyer agrees to purchase, the following motor
 * **Color:** Obsidian Black
 * **Vehicle Identification Number (VIN / Chassis No.):** JTDKGNEC50N482910
 * **Registration / License Plate Number:** KLM 492
-* **Current Odometer Reading:** 68,450 km
+* **Current Odometer Reading:** 40,450 km
 
 ---
 
 ## 2. Purchase Price & Payment
-* **Total Purchase Price:** **€9,200.00**
+* **Total Purchase Price:** **€10,200.00**
 * **Payment Method:** Instant SEPA Bank Transfer
 * **Payment Terms:** Payment is due in full upon signing this Agreement and prior to the physical handover of the Vehicle and title documents.
 
